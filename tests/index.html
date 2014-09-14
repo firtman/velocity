@@ -1,0 +1,128 @@
+<!doctype html>
+<meta charset="UTF-8">
+<meta name=viewport content="width=device-width,initial-scale=1">
+<title>Velocity 2014 Tests</title>
+<style>
+ul a {
+	border-radius: 5px;
+	border: 1px solid black;
+	background: #364F89;
+	text-decoration: none;
+	text-align: center;
+	padding: 10px;
+	color: white;
+	margin-left: 10px;
+	font-size: small;
+	font-weight: bold;
+}
+
+ul {
+	list-style: none;
+	padding-left: 10px;
+	margin: 5px 0;
+}
+
+li {
+	height: 50px;	
+}
+
+body {
+}
+#output {
+	position: fixed;
+	width: 100%;
+	bottom: 0; left: 0;
+	background-color: silver;
+}
+dd, dl, dt {
+	padding: 5px 2px;
+	float: left;
+}
+dl {
+	width: 30%;	
+	font-size: small;
+	font-family: sans-serif;
+}
+dt {
+	color: blue;	
+}
+dd {
+	font-weight: bold;	
+	color: black;
+	margin: 0;
+}
+
+footer {
+	margin-top: 130px;
+	color: gray;
+	margin-bottom: 40px;	
+} 
+footer a {
+	color: gray;	
+}
+</style>
+<script>
+_timestamp = new Date().getTime();
+// Polyfill for Navigation Timing API
+if (window.performance==undefined) {
+    window.performance = {
+         emulated: true,
+         now: function() {
+             return new Date().getTime();
+         },
+         timing: {
+             "navigationStart":_timestamp 
+         }
+    }
+	document.addEventListener("DOMContentLoaded", function() {
+    	window.performance.timing.domComplete = window.performance.now();
+	});
+	window.addEventListener("load", function() {
+    	window.performance.timing.loadEventStart = window.performance.now();
+    	window.performance.timing.loadEventEnd = window.performance.now();
+	});
+    
+} else {
+    window.performance.emulated = false;
+}
+
+window.addEventListener("load", function() {
+    	setTimeout(function() {
+			var timing = window.performance.timing;
+    		var user = timing.loadEventEnd - timing.navigationStart;
+			var fetch = timing.responseEnd - timing.fetchStart;
+			var loadTime = timing.domContentLoadedEventEnd - timing.responseEnd;
+			if (window.performance.emulated) {
+				var html = "<dl><dt>Load: </dt><dd>" + user + "ms</dd></dl>";			
+			} else {
+				var html = "<dl><dt>Total: </dt><dd>" + user + "ms</dd></dl>" + 
+			    	   "<dl><dt>Fetch: </dt><dd>" + fetch + "ms</dd></dl>"+
+			    	   "<dl><dt>DOM: </dt><dd>" + loadTime + "ms</dd></dl>" ;
+			}
+			document.querySelector("div#output").innerHTML = html;
+    	}, 0);
+});
+
+</script>
+
+
+<h1>Extreme performance</h1>
+<h2>Select your test</h2>
+<ul>
+  <li>Script loading <a href="asyncjs.html">standard</a><a href="asyncjs-hacked.html">async</a></li>
+  <li>Overflow Scrolling <a href="overflow.html">standard &amp; touch</a></li>
+  <li> Scrolling FPS<a href="scroll.html">normal </a> <a href="scroll-drop.html">dropping fps</a></li>
+  <li>Viewport<a href="viewport.html">desktop </a> <a href="viewport-mobile.html">mobile</a><a href="viewport-minimal.html">minimalui</a></li>
+  <li>JS Frameworks<a href="jquery.php">jQuery </a> <a href="jquery-mobile.php">jQuery Mobile</a></li>
+  <li>Custom Fonts <a href="font.html">Very large Font </a></li>
+  <li>Storage <a href="storage-web.html">Web </a> <a href="storage-sql.html">SQL</a></li>
+</ul>
+<p>At the bottom you will see data from Navigation Timing API (reduced on iOS)</p>
+
+<footer>
+Test by <a href="http://twitter.com/firt" target="_blank">@firt</a> for #velocityconf
+</footer>
+
+<div id=output>
+<dl><dd>Loading data</dd></dl>
+</div>

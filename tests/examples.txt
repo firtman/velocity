@@ -1,0 +1,24 @@
+JavaScript Async vs non-Async
+
+Vertical scrolling: 
+	1- example with and without overflow: touch
+	2- crappy scrolling with DOM
+	
+3D transform hardware acceleration
+
+Viewport
+	1- Mobile vs desktop
+	2- minimal-ui 
+	
+JavaScript frameworks
+	1- Hello world with jQuery Mobile
+	
+Web Storage vs. SQL vs. IDB
+
+Infinite scroll: Large DOM vs iframes vs object pool
+
+SVG vs icon fonts vs responsive images
+
+Custom fonts 
+
+Touch

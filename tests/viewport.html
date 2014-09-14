@@ -1,0 +1,117 @@
+<!doctype html>
+<meta charset="UTF-8">
+<title>Velocity 2014 Test</title>
+<style>
+
+body {
+background: #feccb1; /* Old browsers */
+background: -moz-linear-gradient(top, #feccb1 0%, #f17432 17%, #ea5507 62%, #fb955e 100%); /* FF3.6+ */
+background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#feccb1), color-stop(17%,#f17432), color-stop(62%,#ea5507), color-stop(100%,#fb955e)); /* Chrome,Safari4+ */
+background: -webkit-linear-gradient(top, #feccb1 0%,#f17432 17%,#ea5507 62%,#fb955e 100%); /* Chrome10+,Safari5.1+ */
+background: -o-linear-gradient(top, #feccb1 0%,#f17432 17%,#ea5507 62%,#fb955e 100%); /* Opera 11.10+ */
+background: -ms-linear-gradient(top, #feccb1 0%,#f17432 17%,#ea5507 62%,#fb955e 100%); /* IE10+ */
+background: linear-gradient(to bottom, #feccb1 0%,#f17432 17%,#ea5507 62%,#fb955e 100%); /* W3C */	
+}
+
+#output {
+	position: fixed;
+	width: 100%;
+	bottom: 0; left: 0;
+	background-color: silver;
+}
+dd, dl, dt {
+	padding: 5px 2px;
+	float: left;
+}
+dl {
+	width: 30%;	
+	font-size: small;
+	font-family: sans-serif;
+}
+dt {
+	color: blue;	
+}
+dd {
+	font-weight: bold;	
+	color: black;
+	margin: 0;
+}
+
+footer {
+	margin-top: 130px;
+	color: gray;	
+	margin-bottom: 40px;	
+
+} 
+footer a {
+	color: gray;	
+}
+</style>
+<script>
+_timestamp = new Date().getTime();
+// Polyfill for Navigation Timing API
+if (window.performance==undefined) {
+    window.performance = {
+         emulated: true,
+         now: function() {
+             return new Date().getTime();
+         },
+         timing: {
+             "navigationStart":_timestamp 
+         }
+    }
+	document.addEventListener("DOMContentLoaded", function() {
+    	window.performance.timing.domComplete = window.performance.now();
+	});
+	window.addEventListener("load", function() {
+    	window.performance.timing.loadEventStart = window.performance.now();
+    	window.performance.timing.loadEventEnd = window.performance.now();
+	});
+    
+} else {
+    window.performance.emulated = false;
+}
+
+window.addEventListener("load", function() {
+    	setTimeout(function() {
+			var timing = window.performance.timing;
+    		var user = timing.loadEventEnd - timing.navigationStart;
+			var fetch = timing.responseEnd - timing.fetchStart;
+			var loadTime = timing.domContentLoadedEventEnd - timing.responseEnd;
+			if (window.performance.emulated) {
+				var html = "<dl><dt>Load: </dt><dd>" + user + "ms</dd></dl>";			
+			} else {
+				var html = "<dl><dt>Total: </dt><dd>" + user + "ms</dd></dl>" + 
+			    	   "<dl><dt>Fetch: </dt><dd>" + fetch + "ms</dd></dl>"+
+			    	   "<dl><dt>DOM: </dt><dd>" + loadTime + "ms</dd></dl>" ;
+			}
+			document.querySelector("div#output").innerHTML = html;
+    	}, 0);
+});
+
+</script>
+
+<!-- START TEST -->
+
+<h1>Extreme performance</h1>
+<h2>Desktop viewport</h2>
+<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+<footer>
+Test by <a href="http://twitter.com/firt" target="_blank">@firt</a> for #velocityconf
+</footer>
+
+<div id=output>
+<dl><dd>Loading data</dd></dl>
+</div>
