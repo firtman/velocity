@@ -98,6 +98,7 @@ window.addEventListener('load', function() {
 	db.transaction(function(t) {
 		t.executeSql("CREATE TABLE DATA IF NOT EXISTS TEST (data)");
 	}, function() {
+		var start = performance.now();
 		for (var j=0; j<1000; j++) {
 			for (var i=0; i<100; i++) {
 				db.transaction(function(t2) {
@@ -106,6 +107,8 @@ window.addEventListener('load', function() {
 			}
 			db.transaction(function(t3) {
 				t3.executeSql("DELETE * FROM DATA");
+				alert("Time elapsed: " + performance.now()-start);
+
 			});
 		}	
 	});
