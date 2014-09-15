@@ -99,9 +99,10 @@ window.addEventListener('load', function() {
 		for (var i=0; i<100; i++) {
 			localStorage.setItem("key" + i, object);
 		}
-		alert("Time elapsed: " + performance.now()-start);
 		clear();
 	}
+	alert("Time elapsed: " + performance.now()-start);
+
 });
 
 function clear() {	
