@@ -91,6 +91,7 @@ window.addEventListener("load", function() {
 <script>
 window.addEventListener('load', function() {
 	var object = "";
+	var start = performance.now();
 	for (var i=0; i<1000; i++) {
 		object += "|";
 	}
@@ -98,6 +99,7 @@ window.addEventListener('load', function() {
 		for (var i=0; i<100; i++) {
 			localStorage.setItem("key" + i, object);
 		}
+		alert("Time elapsed: " + performance.now()-start);
 		clear();
 	}
 });
