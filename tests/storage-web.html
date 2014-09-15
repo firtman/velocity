@@ -71,7 +71,7 @@ if (window.performance==undefined) {
 
 window.addEventListener("load", function() {
     	setTimeout(function() {
-			var timing = window.performance.timing;
+		var timing = window.performance.timing;
     		var user = timing.loadEventEnd - timing.navigationStart;
 			var fetch = timing.responseEnd - timing.fetchStart;
 			var loadTime = timing.domContentLoadedEventEnd - timing.responseEnd;
@@ -90,18 +90,22 @@ window.addEventListener("load", function() {
 
 <script>
 window.addEventListener('load', function() {
-	var object = "";
-	var start = performance.now();
-	for (var i=0; i<1000; i++) {
-		object += "|";
-	}
-	for (var j=0; j<1000; j++) {
-		for (var i=0; i<100; i++) {
-			localStorage.setItem("key" + i, object);
+	setTimeout(function() {
+		var object = "";
+		var start = performance.now();
+		for (var i=0; i<1000; i++) {
+			object += "|";
 		}
-		clear();
+		for (var j=0; j<1000; j++) {
+			for (var i=0; i<100; i++) {
+				localStorage.setItem("key" + i, object);
+			}
+			clear();
+		}
+		console.log(start);
+		console.log(performance.now())
+		alert("Time elapsed: " + performance.now()-start);
 	}
-	alert("Time elapsed: " + performance.now()-start);
 
 });
 
