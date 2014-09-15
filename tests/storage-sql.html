@@ -89,11 +89,13 @@ window.addEventListener("load", function() {
 </script>
 
 <script>
+var count = 0;
 window.addEventListener('load', function() {
 	var object = "";
 	for (var i=0; i<1000; i++) {
 		object += "|";
 	}
+	var start = 
 	var db = window.openDatabase("test", 1.0, "test", 3*1024*1024);
 	db.transaction(function(t) {
 		t.executeSql("CREATE TABLE DATA IF NOT EXISTS TEST (data)");
@@ -103,16 +105,24 @@ window.addEventListener('load', function() {
 			for (var i=0; i<100; i++) {
 				db.transaction(function(t2) {
 					t2.executeSql("INSERT INTO DATA (data) VALUES (?)", [object]);
+					count++;
+					if (count==100000) {
+						clean();
+						alert("Elapsed time: " + (performance.now()-start));
+					}
 				};
 			}
-			db.transaction(function(t3) {
-				t3.executeSql("DELETE * FROM DATA");
-			});
+
 		}	
 	});
-	
-	
 });
+
+function clean() {
+	db.transaction(function(t3) {
+		t3.executeSql("DELETE * FROM DATA");
+	});	
+	
+}
 
 </script>
 
