@@ -3,7 +3,7 @@
 <meta name=viewport content="width=device-width,initial-scale=1">
 <title>Velocity 2014 Tests</title>
 <style>
-ul a {
+ol a {
 	border-radius: 5px;
 	border: 1px solid black;
 	background: #364F89;
@@ -16,9 +16,8 @@ ul a {
 	font-weight: bold;
 }
 
-ul {
-	list-style: none;
-	padding-left: 10px;
+ol {
+	padding-left: 20px;
 	margin: 5px 0;
 }
 
@@ -108,15 +107,18 @@ window.addEventListener("load", function() {
 
 <h1>Extreme performance</h1>
 <h2>Select your test</h2>
-<ul>
+<ol>
   <li>Script loading <a href="asyncjs.html">standard</a><a href="asyncjs-hacked.html">async</a></li>
   <li>Overflow Scrolling <a href="overflow.html">standard &amp; touch</a></li>
   <li> Scrolling FPS<a href="scroll.html">normal </a> <a href="scroll-drop.html">dropping fps</a></li>
   <li>Viewport<a href="viewport.html">desktop </a> <a href="viewport-mobile.html">mobile</a><a href="viewport-minimal.html">minimalui</a></li>
-  <li>JS Frameworks<a href="jquery.php">jQuery </a> <a href="jquery-mobile.php">jQuery Mobile</a></li>
+  <li>Image loading<a href="image.html">standard </a> <a href="image-datauri.html">data uri</a></li>
+  <li>Click <a href="touch-desktop.html">desktop </a> <a href="touch-mobile.html">mobile</a><a href="touch-mobile-fixed.html">fixed</a> <a href="touch-fastclick.html">fast click</a></li>
+  <li>Media Queries <a href="mediaqueries.html">loading & parsing </a></li>
   <li>Custom Fonts <a href="font.html">Very large Font </a></li>
   <li>Storage <a href="storage-web.html">Web </a> <a href="storage-sql.html">SQL</a></li>
-</ul>
+  <li>Geolocation <a href="geo.html">normal </a> <a href="geo-age.html">with maximumAge</a></li>
+</ol>
 <p>At the bottom you will see data from Navigation Timing API (reduced on iOS)</p>
 
 <footer>

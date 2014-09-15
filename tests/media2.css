@@ -1,0 +1,3 @@
+#stylesheet::after {
+    content: 'Media Query 2 rendered';
+}
