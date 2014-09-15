@@ -103,12 +103,10 @@ window.addEventListener('load', function() {
 			for (var i=0; i<100; i++) {
 				db.transaction(function(t2) {
 					t2.executeSql("INSERT INTO DATA (data) VALUES (?)", [object]);
-				});
+				};
 			}
 			db.transaction(function(t3) {
 				t3.executeSql("DELETE * FROM DATA");
-				alert("Time elapsed: " + performance.now()-start);
-
 			});
 		}	
 	});
