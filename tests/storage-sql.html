@@ -95,7 +95,7 @@ window.addEventListener('load', function() {
 	for (var i=0; i<1000; i++) {
 		object += "|";
 	}
-	var start = 
+	var start = performance.now();
 	var db = window.openDatabase("test", 1.0, "test", 3*1024*1024);
 	db.transaction(function(t) {
 		t.executeSql("CREATE TABLE DATA IF NOT EXISTS TEST (data)");
