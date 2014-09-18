@@ -97,7 +97,7 @@ window.addEventListener("load", function() {
         if (touchStarted==0) {
           this.innerHTML = "Touch events not available";  
         } else {
-		  this.innerHTML = "Click delayed " + (performance.now()-touchStarted) + " milliseconds";
+		  this.innerHTML = "Click delayed " + Math.floor(performance.now()-touchStarted) + " milliseconds";
         }
 	});	
 }, false);
