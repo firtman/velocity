@@ -1,6 +1,6 @@
 <!doctype html>
 <meta charset="UTF-8">
-<title>Velocity 2014 Test</title>
+<title>Velocity 2015 Test</title>
 <meta name=viewport content="width=device-width">
 <style>
 body {
@@ -97,7 +97,7 @@ window.addEventListener("load", function() {
         if (touchStarted==0) {
           this.innerHTML = "Touch events not available";  
         } else {
-		  this.innerHTML = "Click delayed " + Math.floor(performance.now()-touchStarted) + " milliseconds";
+		  this.innerHTML = "Click delayed " + (performance.now()-touchStarted) + " milliseconds";
         }
 	});	
 }, false);
